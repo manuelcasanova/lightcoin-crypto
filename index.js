@@ -149,10 +149,28 @@ class Account {
 
 //Driver code
 
-const myAccount = new Account("snow-patrol");
+// const myAccount = new Account("snow-patrol");
 
-t1 = new Withdrawal(50.25, myAccount);
+// t1 = new Withdrawal(50.25, myAccount);
+// t1.commit();
+
+// console.log(`Transaction: ${t1.amount}`);
+// console.log(`Balance: ${myAccount.balance}`);
+
+console.log("First transaction");
+
+const Account1 = new Account("Manuel");
+
+t1 = new Deposit(100.00, Account1);
 t1.commit();
 
 console.log(`Transaction: ${t1.amount}`);
-console.log(`Balance: ${myAccount.balance}`);
+console.log(`Balance: ${Account1.balance}`);
+
+console.log("Second transaction");
+
+t2 = new Withdrawal(50, Account1);
+t2.commit();
+console.log(`Transaction: ${t2.amount}`);
+console.log(`Balance: ${Account1.balance}`);
+
