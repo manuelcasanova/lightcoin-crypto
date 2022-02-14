@@ -197,47 +197,72 @@ class Account {
   }
 }
 
-Driver code
+// Driver code
 
-const myAccount = new Account("snow-patrol");
+// const myAccount = new Account("snow-patrol");
 
-t1 = new Withdrawal(50.25, myAccount);
-t1.commit();
+// t1 = new Withdrawal(50.25, myAccount);
+// t1.commit();
 
-console.log(`Transaction: ${t1.amount}`);
-console.log(`Balance: ${myAccount.balance}`);
+// console.log(`Transaction: ${t1.amount}`);
+// console.log(`Balance: ${myAccount.balance}`);
 
-console.log(`First transaction is a ${t1.typeOfTransaction}`);
+// console.log(`First transaction is a ${t1.typeOfTransaction}`);
 
-const Account1 = new Account("Manuel");
+// const Account1 = new Account("Manuel");
 
-t1 = new Deposit(100.00, Account1);
-t1.commit();
+// t1 = new Deposit(100.00, Account1);
+// t1.commit();
 
-console.log(`Transaction: ${t1.amount}`);
-console.log(`Balance: ${Account1.balance}`);
+// console.log(`Transaction: ${t1.amount}`);
+// console.log(`Balance: ${Account1.balance}`);
 
-console.log("Second transaction");
+// console.log("Second transaction");
 
-t2 = new Withdrawal(50, Account1);
-t2.commit();
-console.log(`Transaction: ${t2.amount}`);
-console.log(`Balance: ${Account1.balance}`);
+// t2 = new Withdrawal(50, Account1);
+// t2.commit();
+// console.log(`Transaction: ${t2.amount}`);
+// console.log(`Balance: ${Account1.balance}`);
 
-console.log("Third transaction");
+// console.log("Third transaction");
 
-t3 = new Withdrawal(49, Account1);
-t3.commit();
-console.log(`Transaction: ${t3.amount}`);
-console.log(`Balance: ${Account1.balance}`);
+// t3 = new Withdrawal(49, Account1);
+// t3.commit();
+// console.log(`Transaction: ${t3.amount}`);
+// console.log(`Balance: ${Account1.balance}`);
 
-console.log("Final transaction, supposed to fail");
+// console.log("Final transaction, supposed to fail");
 
-t3 = new Withdrawal(2, Account1);
-t3.commit();
-console.log(`Transaction: ${t3.amount}`);
-console.log(`Balance: ${Account1.balance}`);
+// t3 = new Withdrawal(2, Account1);
+// t3.commit();
+// console.log(`Transaction: ${t3.amount}`);
+// console.log(`Balance: ${Account1.balance}`);
 
 //Should fail because at this point there was 1 left in the account
 
 //The last transaction fails, because the balance stays in 1 (you cannot withdraw 2) but what it prints seems to me like it's accepting the transaction (although it does not actually)
+
+//TEST WITH THE TEST PROVIDED IN THE SOLUTION
+
+const myAccount = new Account("Manuel");
+
+console.log('Starting Account Balance: ', myAccount.balance);
+
+console.log('Attempting to withdraw even $1 should fail...');
+const t1 = new Withdrawal(1.00, myAccount);
+console.log('Commit result:', t1.commit());
+console.log('Account Balance: ', myAccount.balance);
+
+console.log('Depositing should succeed...');
+const t2 = new Deposit(9.99, myAccount);
+console.log('Commit result:', t2.commit());
+console.log('Account Balance: ', myAccount.balance);
+
+console.log('Withdrawal for 9.99 should be allowed...');
+const t3 = new Withdrawal(9.99, myAccount);
+console.log('Commit result:', t3.commit());
+
+console.log('Ending Account Balance: ', myAccount.balance);
+console.log("Lookings like I'm broke again");
+
+console.log('Account Transaction History: ', myAccount.transactions);
