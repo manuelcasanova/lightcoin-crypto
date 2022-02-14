@@ -58,36 +58,82 @@
 //ACCOUNT CLASS
 
 
-class Account {
-  constructor(username, balance) {
-    this.username = username;
-    this.balance = 0;
-  }
-}
-class Withdrawal {
+// class Account {
+//   constructor(username, balance) {
+//     this.username = username;
+//     this.balance = 0;
+//   }
+// }
+// class Withdrawal {
 
-  constructor(amount, account) {
-    this.amount = amount;
-    this.account = account;
-  }
+//   constructor(amount, account) {
+//     this.amount = amount;
+//     this.account = account;
+//   }
+
+//   commit() {
+//     this.account.balance -= this.amount;
+//   }
+// }
+
+// class Deposit {
+
+//   constructor(amount, account) {
+//     this.amount = amount;
+//     this.account = account;
+//   }
+
+//   commit() {
+//     this.account.balance += this.amount;
+//   }
+
+
+// }
+
+// //Driver code
+
+// const myAccount = new Account("snow-patrol");
+
+// t1 = new Withdrawal(50.25, myAccount);
+// t1.commit();
+
+// console.log(`Transaction: ${t1.amount}`);
+// console.log(`Balance: ${myAccount.balance}`);
+
+//TRANSACTION CLASS
+
+class Transaction {
+
+    constructor(amount, account) {
+      this.amount = amount;
+      this.account = account;
+    }
+
+
+}
+
+
+class Withdrawal extends Transaction {
 
   commit() {
     this.account.balance -= this.amount;
   }
 }
 
-class Deposit {
-
-  constructor(amount, account) {
-    this.amount = amount;
-    this.account = account;
-  }
+class Deposit extends Transaction {
 
   commit() {
     this.account.balance += this.amount;
   }
 
 
+}
+
+class Account {
+  constructor(username, balance) {
+    this.username = username;
+    this.balance = 0;
+  }
 }
 
 //Driver code
