@@ -155,13 +155,23 @@ class Account {
     this.transactions = [];
   }
 
+
   get balance() {
     let balance = 0;
-    for (let trans of this.transactions) {
-      balance += trans.value; //Sum the value of each transaction
+    for (let i = 0; i < this.transactions.length; i++) {
+      balance += this.transactions[i].value; //Sum the value of each transaction
     }
     return balance;
   }
+
+    // get balance() {
+  //   let balance = 0;
+  //   for (let trans of this.transactions) {
+  //     balance += trans.value; //Sum the value of each transaction with for loop
+  //   }
+  //   return balance;
+  // }
+
 
   addTransaction(transaction) {
     this.transactions.push(transaction);
