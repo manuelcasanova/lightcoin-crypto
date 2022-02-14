@@ -110,8 +110,10 @@ class Transaction {
     }
 
     commit() {
-    this.time = new Date();
-    this.account.addTransaction(this);
+      if (!this.isAllowed()) return false;
+      this.time = new Date();
+      this.account.addTransaction(this);
+      return true;
   }
 
 }
@@ -127,6 +129,15 @@ get value() {
   return -this.amount; //why not .value?
 }
 
+isAllowed () {
+  return this.account.balance - this.amount >= 0;
+}
+
+typeOfTransaction () {
+  return "withdrawal"
+}
+
+
 }
 
 class Deposit extends Transaction {
@@ -137,6 +148,14 @@ class Deposit extends Transaction {
 //Instead of having commit defined in each subclass, define a getter method called value in each subclass.
 get value() {
   return this.amount; //Why not .value?
+}
+
+isAllowed () {
+  return true;
+}
+
+typeOfTransaction () {
+  return "deposit"
 }
 
 }
@@ -178,17 +197,17 @@ class Account {
   }
 }
 
-//Driver code
+Driver code
 
-// const myAccount = new Account("snow-patrol");
+const myAccount = new Account("snow-patrol");
 
-// t1 = new Withdrawal(50.25, myAccount);
-// t1.commit();
+t1 = new Withdrawal(50.25, myAccount);
+t1.commit();
 
-// console.log(`Transaction: ${t1.amount}`);
-// console.log(`Balance: ${myAccount.balance}`);
+console.log(`Transaction: ${t1.amount}`);
+console.log(`Balance: ${myAccount.balance}`);
 
-console.log("First transaction");
+console.log(`First transaction is a ${t1.typeOfTransaction}`);
 
 const Account1 = new Account("Manuel");
 
@@ -205,3 +224,20 @@ t2.commit();
 console.log(`Transaction: ${t2.amount}`);
 console.log(`Balance: ${Account1.balance}`);
 
+console.log("Third transaction");
+
+t3 = new Withdrawal(49, Account1);
+t3.commit();
+console.log(`Transaction: ${t3.amount}`);
+console.log(`Balance: ${Account1.balance}`);
+
+console.log("Final transaction, supposed to fail");
+
+t3 = new Withdrawal(2, Account1);
+t3.commit();
+console.log(`Transaction: ${t3.amount}`);
+console.log(`Balance: ${Account1.balance}`);
+
+//Should fail because at this point there was 1 left in the account
+
+//The last transaction fails, because the balance stays in 1 (you cannot withdraw 2) but what it prints seems to me like it's accepting the transaction (although it does not actually)
