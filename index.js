@@ -9,6 +9,18 @@ class Withdrawal {
   commit() {
     balance -= this.amount;
   }
+}
+
+class Deposit {
+
+  constructor(amount) {
+    this.amount = amount;
+  }
+
+  commit() {
+    balance += this.amount;
+  }
+
 
 }
 
@@ -31,5 +43,11 @@ console.log('Balance:', balance);
 t3 = new Withdrawal(39.76);
 t3.commit();
 console.log('Transaction 3:', t3);
+
+console.log('Balance:', balance);
+
+t4 = new Deposit(100.00);
+t4.commit();
+console.log('Transaction 4:', t4);
 
 console.log('Balance:', balance);
