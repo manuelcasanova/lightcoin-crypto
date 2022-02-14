@@ -27,3 +27,9 @@ t2.commit();
 console.log('Transaction 2:', t2);
 
 console.log('Balance:', balance);
+
+t3 = new Withdrawal(39.76);
+t3.commit();
+console.log('Transaction 3:', t3);
+
+console.log('Balance:', balance);
